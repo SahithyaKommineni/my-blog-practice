@@ -1,1 +1,12 @@
 "/* css file*/" 
+.subscribe {
+  background-color: #007BFF;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+}
+
+.subscribe:hover {
+  background-color: #0056b3;
+}

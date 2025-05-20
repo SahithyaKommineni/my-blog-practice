@@ -21,7 +21,7 @@ jobs:
           node-version: '16'
 
       - name: Bump version and push tag
-        uses: anothrnick/github-tag-action@v1.38
+        uses: anothrnick/github-tag-action@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 

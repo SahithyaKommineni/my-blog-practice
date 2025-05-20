@@ -1,7 +1,6 @@
 {
   "name": "my-blog-practice",
   "version": "1.0.2",
-  ...
   "dependencies": {
     "minimist": "0.0.8"
   }

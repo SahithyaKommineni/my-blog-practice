@@ -1,22 +1,8 @@
 {
   "name": "my-blog-practice",
   "version": "1.0.1",
-  "description": "practicing github using GUI and CLI",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/SahithyaKommineni/my-blog-practice.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/SahithyaKommineni/my-blog-practice/issues"
-  },
-  "homepage": "https://github.com/SahithyaKommineni/my-blog-practice#readme"
+  ...
+  "dependencies": {
+    "minimist": "0.0.8"
+  }
 }
-"minimist": "0.0.8"
-

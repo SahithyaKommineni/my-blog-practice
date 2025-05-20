@@ -1,6 +1,6 @@
 {
   "name": "my-blog-practice",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "practicing github using GUI and CLI",
   "main": "index.js",
   "scripts": {

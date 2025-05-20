@@ -1,4 +1,4 @@
-name: Release
+name: Custom Release
 
 on:
   push:
@@ -13,21 +13,44 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '16'
 
-      - name: Bump version and push tag
-        uses: anothrNick/github-tag-action@v1.43.0
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          default_bump: patch
-          tag_prefix: 'v'
+          python-version: '3.x'
+
+      - name: Extract version
+        id: extract_version
+        run: |
+          VERSION=""
+          if [ -f "package.json" ]; then
+            VERSION=$(jq -r '.version' package.json)
+          elif [ -f "pyproject.toml" ]; then
+            VERSION=$(grep -m1 "^version" pyproject.toml | cut -d '"' -f2)
+          else
+            echo "Error: No package.json or pyproject.toml found"
+            exit 1
+          fi
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "📦 Found version: $VERSION"
+
+      - name: Create and push tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch --tags
+          git tag "v${{ steps.extract_version.outputs.version }}"
+          git push origin "v${{ steps.extract_version.outputs.version }}"
 
       - name: Create GitHub Release
         uses: ncipollo/release-action@v1
         with:
+          tag: v${{ steps.extract_version.outputs.version }}
           token: ${{ secrets.GITHUB_TOKEN }}
